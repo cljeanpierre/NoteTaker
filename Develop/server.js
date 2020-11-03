@@ -24,12 +24,15 @@ app.get('/notes', (req, res) => {
 //API Routes
 //GET to read `db.json` file and return all saved notes as JSON
 
-// app.get("/api/notes", (req, res) => {
+app.get("/api/notes", (req, res) => {
 //     //read file functionality
-
+    fs.readFile('db.json', function(err, data) {
+        if (err) throw err;
+        JSON.parse(data);
+    })
 //     //respond with json
-
-// })
+    res.json(noteList)
+ })
 
 //POST to receive a new note to save on request body, add it to the `db.json` file and return the new note to client
 
@@ -39,7 +42,6 @@ app.get('/notes', (req, res) => {
 
 // app.delete("<endpoint goes here>", (req, res) => {})
 
-//Create servers
 //Start our server
 app.listen(PORT, function() {
     console.log(`App now listening on port ${PORT}`)
