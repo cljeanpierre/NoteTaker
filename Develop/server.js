@@ -51,7 +51,7 @@ app.post("/api/notes", (req, res) => {
         }
 
         notes.push(newNote);
-        fs.writeFile(__dirname + "/Develop/db/db.json", JSON.stringify(notes, null, 2), function (err) {
+        fs.writeFile(__dirname + "/Develop/db/db.json", "utf8", JSON.stringify(notes, null, 2), function (err) {
             if (err) throw new Error(err);
             res.send("Note successfully saved!");
         });
@@ -60,9 +60,9 @@ app.post("/api/notes", (req, res) => {
 
 //DELETE note by id number after it's been saved.  First, read all notes from the `db.json` file and remove the note with the given id number.  Last, rewrite the notes in the `db.json` file.
 
-app.delete("'api/notes/' + id", (req, res) => {
+app.delete('/api/notes/:id', (req, res) => {
 
-    fs.readFile('db.json', function (err, data) {
+    fs.readFile(_dirname + "/Develop/db/db.json", function (err, data) {
         if (err) throw err;
         const dbobject = JSON.parse(data);
         const idremove = req.params.id;
