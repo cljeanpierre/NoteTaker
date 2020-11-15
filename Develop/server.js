@@ -39,7 +39,7 @@ app.get("/api/notes", (req, res) => {
 //POST to receive a new note to save on request body, add it to the `db.json` file and return the new note to client
 
 app.post("/api/notes", (req, res) => {
-    fs.readFile('.db/db.json', function (err, data) {
+    fs.readFile('./db/db.json', function (err, data) {
         if (err) throw err;
         JSON.parse(data);
 
@@ -51,7 +51,7 @@ app.post("/api/notes", (req, res) => {
         }
 
         notes.push(newNote);
-        fs.writeFile(__dirname + "/Develop/db/db.json", "utf8", JSON.stringify(notes, null, 2), function (err) {
+        fs.writeFile("./db/db.json", JSON.stringify(notes, null, 2), function (err, data) {
             if (err) throw new Error(err);
             res.send("Note successfully saved!");
         });
@@ -62,19 +62,18 @@ app.post("/api/notes", (req, res) => {
 
 app.delete('/api/notes/:id', (req, res) => {
 
-    fs.readFile(_dirname + "/Develop/db/db.json", function (err, data) {
+    fs.readFile("./db/db.json", function (err, data) {
         if (err) throw err;
         const dbobject = JSON.parse(data);
         const idremove = req.params.id;
         for (let i = 0; i < dbobject.length; i++) {
+            console.log(dbobject[i]);
             if (dbobject[i].id.toString() === idremove) {
                 dbobject.splice(i, 1);
-            } else {
-                console.log("No matching id");
-            }
+            } 
         }
 
-        fs.writeFile('db.json', JSON.stringify(dbobject, null, 2), function (err, data) {
+        fs.writeFile('./db/db.json', JSON.stringify(dbobject, null, 2), function (err, data) {
             if (err) throw err;
             res.send(`Note ${idremove} has been removed!`)
         })
