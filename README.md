@@ -4,9 +4,9 @@ This application is designed for users who need to keep track of a lot of inform
 
 # User Story
 
-AS A user, I want to be able to write and save notes.
-I WANT to be able to delete notes I've written before
-SO THAT I can organize my thoughts and keep track of tasks I need to complete
+AS A user, I want to be able to write and save notes. <br />
+I WANT to be able to delete notes I've written before <br/>
+SO THAT I can organize my thoughts and keep track of tasks I need to complete. <br /> 
 
 # Installation
 
